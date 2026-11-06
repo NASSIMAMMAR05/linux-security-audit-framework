@@ -1,0 +1,3 @@
+include templates/*.html
+include modules/*.py
+include README.md

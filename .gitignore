@@ -1,0 +1,36 @@
+# Environnement virtuel
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.save
+
+# Egg info
+*.egg-info/
+*.egg
+
+# Rapports et logs
+reports/*.html
+reports/*.pdf
+logs/*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+*.pem
+
+# Fichiers temporaires
+v
