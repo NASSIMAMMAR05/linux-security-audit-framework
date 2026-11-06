@@ -2,108 +2,109 @@
 
 ## Framework d'Audit de Sécurité Automatisé pour Infrastructures Linux
 
----
-
-**Auteur :** Nassim Ammar  
-**Domaine :** Pentest & Audit Interne  
-**Année universitaire :** 2025 - 2026  
-**Établissement :** EMSI
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Flask](https://img.shields.io/badge/Flask-3.x-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![PFA](https://img.shields.io/badge/PFA-2025--2026-orange)
 
 ---
 
-## 📋 Table des matières
+## 📋 Description
 
-1. [Présentation](#présentation)
-2. [Fonctionnalités](#fonctionnalités)
-3. [Architecture](#architecture)
-4. [Installation](#installation)
-5. [Utilisation](#utilisation)
-6. [Commandes CLI](#commandes-cli)
-7. [Modules](#modules)
-8. [Rapports](#rapports)
-9. [Dépannage](#dépannage)
+Framework automatisé d'audit de sécurité pour infrastructures Linux. Effectue **50+ vérifications de sécurité**, détecte les vulnérabilités **CVE** via l'API NVD, calcule un **score CVSS** et génère des **rapports HTML/PDF** professionnels.
+
+**Réalisé par :** Nassim Ammar  
+**Encadrant :** M. Hicham Toumi  
+**Établissement :** EMSI - Filière 4CIRM, Cybersécurité  
+**Année universitaire :** 2025-2026
 
 ---
 
-## Présentation
+## ✨ Fonctionnalités
 
-### Contexte
-Les systèmes Linux sont devenus essentiels dans les environnements critiques (serveurs web, cloud, DevOps). Les audits de sécurité manuels sont longs et sujets à erreurs.
+### 🔍 Audit de sécurité
+- ✅ **50+ vérifications** basées sur les CIS Benchmarks
+- ✅ Vérification SSH (Root Login, X11Forwarding, MaxAuthTries)
+- ✅ Vérification des permissions fichiers critiques
+- ✅ Vérification du pare-feu (UFW)
+- ✅ Vérification des utilisateurs
+- ✅ Vérification des paramètres noyau (sysctl)
+- ✅ Vérification d'AppArmor
 
-### Solution
-Le **Linux Security Audit Framework** est un outil automatisé qui permet d'analyser la sécurité d'un système Linux et de générer des rapports détaillés.
+### 🐛 Détection des vulnérabilités
+- ✅ Scan CVE via l'API NVD (NIST)
+- ✅ Comparaison des packages avec la base de vulnérabilités
+- ✅ Classification par sévérité (CVSS)
 
-### Problématique résolue
-- ❌ Processus long et répétitif
-- ❌ Risque d'erreurs humaines
-- ❌ Difficulté à maintenir la conformité
-- ❌ Manque d'automatisation
-- ❌ Évolution constante des vulnérabilités (CVE)
+### 📊 Scoring de sécurité
+- ✅ Score global sur 100
+- ✅ Grade de A+ à F
+- ✅ Pénalités par niveau (CRITICAL, HIGH, MEDIUM, LOW)
 
----
+### 📄 Rapports
+- ✅ Rapport HTML avec design professionnel
+- ✅ Rapport PDF imprimable
+- ✅ Recommandations avec commandes copier-coller
 
-## Fonctionnalités
+### 🌐 Interface web
+- ✅ Dashboard Flask sur http://localhost:5000
+- ✅ Boutons : FULL SCAN, QUICK SCAN, CVE SCAN, DOWNLOAD REPORT, FIX ISSUES
+- ✅ Barre de progression en temps réel
 
-### Core Features
-
-| Fonctionnalité | Description |
-|----------------|-------------|
-| **50+ vérifications** | Basées sur les CIS Benchmarks |
-| **Scan CVE** | Intégration API NVD |
-| **Scoring CVSS** | Score 0-100 avec grades A+ à F |
-| **Rapports HTML/PDF** | Professionnels avec recommandations |
-| **Architecture modulaire** | 5 modules indépendants |
-
-### Interfaces
-
-| Interface | Description |
-|-----------|-------------|
-| **CLI** | Ligne de commande avec bannière ASCII |
-| **Web Dashboard** | Interface Flask sur port 5000 |
-
-### Bonus
-
-| Bonus | Description |
-|-------|-------------|
-| **Port Scanner** | Détection TCP/UDP, services, risques |
-| **Process Monitor** | CPU, mémoire, top processus |
-| **Scan distant (--target)** | Audit via SSH |
-| **OpenSCAP** | Conformité CIS (bonus) |
+### 🔐 Scan distant
+- ✅ Audit d'une machine distante via SSH (--target)
 
 ---
 
-## Architecture
+## 🛠️ Technologies utilisées
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ LINUX SECURITY AUDIT FRAMEWORK │
-└─────────────────────────────────────────────────────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ INTERFACE UTILISATEUR │
-├─────────────────────────────┬───────────────────────────────────────────────┤
-│ CLI (main.py) │ WEB DASHBOARD (Flask) │
-│ --scan --quick-scan --target│ http://localhost:5000 │
-└─────────────────────────────┴───────────────────────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ MOTEUR D'AUDIT │
-├───────────┬───────────┬───────────┬───────────┬───────────┬────────────────┤
-│ Module 1 │ Module 2 │ Module 3 │ Module 4 │ Module 5 │ Bonus │
-│ Collecteur│ Audit │ CVE │ Scoring │ Rapport │ │
-├───────────┼───────────┼───────────┼───────────┼───────────┼────────────────┤
-│ OS │ SSH │ API NVD │ CVSS │ HTML │ Port Scanner │
-│ Packages │ Sudoers │ 30 packs │ 0-100 │ PDF │ Process Mon. │
-│ Users │ Kernel │ Alertes │ A+ à F │ Fix │ OpenSCAP │
-│ Services │ Permissions│ │ │ │ │
-│ Ports │ Firewall │ │ │ │ │
-└───────────┴───────────┴───────────┴───────────┴───────────┴────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RAPPORTS │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ 📊 Score: XX/100 │ 🔍 50+ vérifications │ 🐛 CVEs trouvées │
-│ 📄 Rapport HTML │ 📑 Rapport PDF │ 🔧 Recommandations │
-└─────────────────────────────────────────────────────────────────────────────┘
+| Technologie | Utilisation |
+|-------------|-------------|
+| **Python 3.12** | Langage principal |
+| **Bash** | Commandes système |
+| **Flask** | Dashboard web |
+| **Jinja2** | Templates HTML |
+| **Requests** | API NVD |
+| **ReportLab** | Génération PDF |
+| **Psutil** | Monitoring processus |
+| **VMware** | Virtualisation |
+| **Git** | Versioning |
+
+---
+
+## 📊 Standards & Référentiels
+
+- 🛡️ **CIS Benchmarks** (Center for Internet Security)
+- 📉 **CVSS** (Common Vulnerability Scoring System)
+- 🗄️ **NVD API** (National Vulnerability Database - NIST)
+- 🏛️ **NIST Cybersecurity Framework**
+
+---
+
+## 🚀 Installation
+
+### Prérequis
+- Ubuntu 24.04 / Debian 12 / Kali Linux
+- Python 3.10+
+- 500 MB d'espace disque
+
+### Installation rapide
+
+```bash
+# 1. Cloner le projet
+git clone https://github.com/TON_USERNAME/linux-security-audit-framework.git
+cd linux-security-audit-framework
+
+# 2. Créer l'environnement virtuel
+python3 -m venv venv
+source venv/bin/activate
+
+# 3. Installer les dépendances
+pip install flask requests reportlab psutil
+
+# 4. Rendre exécutable
+chmod +x main.py web_dashboard.py
+chmod +x modules/*.py
+
+# 5. Tester
+python3 main.py --quick-scan
